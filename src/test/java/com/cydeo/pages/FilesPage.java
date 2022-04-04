@@ -1,8 +1,13 @@
 package com.cydeo.pages;
 
+import com.cydeo.utilities.BrowserUtils;
+import com.cydeo.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import javax.swing.*;
 import java.util.List;
 
 public class FilesPage extends BasePage {
@@ -45,5 +50,38 @@ public class FilesPage extends BasePage {
 
     @FindBy(xpath = "(//a[@class='name sort columntitle']/span[text()='Name'])[1]")
     public WebElement waitWebElement;
+
+    @FindBy(xpath = "//a[@class='action action-menu permanent']")
+    public List<WebElement> allActionsInFiles;
+
+
+    @FindBy(xpath = " (//span[contains(.,'Delete f')])[2]")
+    public WebElement deleteWebElement;
+
+    public String chooseRandomFileInFilesPage() {
+
+
+
+        int number = allActionsInFiles.size();
+        String Locater ="(//a//span[contains(@class, 'icon-more')])["+number+"]";
+        String expectedFileName = Driver.getDriver().findElement(By.xpath("(//span[@class='nametext'])["+number+"]/span")).getText();
+
+        System.out.println(expectedFileName);
+
+     allActionsInFiles.get(number-1).click();
+
+        BrowserUtils.sleep(3);
+
+        return expectedFileName;
+
+    }
+
+    public void chooseAnOption(String action) {
+
+
+      BrowserUtils.sleep(2);
+        Driver.getDriver().findElement(By.xpath("//li//span[contains(normalize-space(.),'"+action+"')]")).click();
+    }
+
 
 }
