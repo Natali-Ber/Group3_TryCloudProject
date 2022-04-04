@@ -1,6 +1,7 @@
 package com.cydeo.pages;
 
 import com.cydeo.utilities.ConfigurationReader;
+import com.cydeo.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,6 +20,7 @@ public class LoginPage extends  BasePage {
     public WebElement errorMsg;
 
     public void loginWithConfig(){
+        Driver.getDriver().get("http://qa3.trycloud.net");
         inputUsername.sendKeys(ConfigurationReader.getProperty("username1"));
         inputPassword.sendKeys(ConfigurationReader.getProperty("password"));
         loginButton.click();
