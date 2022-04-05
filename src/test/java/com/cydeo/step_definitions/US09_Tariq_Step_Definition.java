@@ -21,7 +21,7 @@ public class US09_Tariq_Step_Definition {
 
     @When("the user clicks the {string} module")
     public void the_user_clicks_the_module(String string) {
-        loginPage.loginWithConfig();
+        //loginPage.loginWithConfig();
         BrowserUtils.DashboardPage(string);
     }
 
@@ -30,6 +30,7 @@ public class US09_Tariq_Step_Definition {
         BrowserUtils.sleep(2);
         filesPage.actionIcon.click();
 
+        BrowserUtils.sleep(3);
     }
 
     @When("user choose the {string} option")
@@ -54,6 +55,8 @@ public class US09_Tariq_Step_Definition {
         Assert.assertTrue(textIs.equals(filesPage.verifyText.getText()));
 
     }
+
+
 }
 
 
